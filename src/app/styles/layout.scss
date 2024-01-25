@@ -1,0 +1,59 @@
+.filter-spacer {
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+    align-items: center;
+    vertical-align: middle;
+
+    @media screen and (max-width: 768px) {
+        flex-direction: column;
+    }
+}
+
+.action-column {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+}
+
+.btn-spacer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+}
+
+.form-title {
+    display: flex;
+    justify-content: center;
+    font-weight: bold;
+    color: rgb(103, 175, 56);
+    font-size: 20px;
+}
+
+.logo-title {
+    color: rgb(103, 175, 56);
+    font-size: 20px;
+}
+
+.text-ellipsis {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    max-width: 110px;
+    display: inline-block;
+}
+
+.aprobe{
+    color: rgb(42, 112, 42);
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+}
+
+.denied{
+    color: rgb(199, 61, 61);
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+}

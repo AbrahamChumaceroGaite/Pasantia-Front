@@ -1,0 +1,49 @@
+<div class="login-container">
+  <div class="background-image" >
+  </div>
+  <p-card header="BIENVENIDO">
+    <div class="grid">
+      <div class="item">
+        <img src="../../../assets/img/logoObispado.png" height="250px" alt="">
+      </div>
+      <div class="item">
+        <div class="form-group">
+          <form id="loginform" #loginform (ngSubmit)="onSubmit()" [formGroup]="form" autocomplete="off">
+            <div class="form-column">
+              <ng-container *ngIf="error">
+                <span style="font-weight: bold; color: red;">Error al iniciar sesión</span>
+              </ng-container>
+
+              <div class="form-content">
+                <label htmlFor="username">
+                  <i class="pi pi-user"></i>Correo</label>
+                <input pInputText type="email" formControlName="email" placeholder="ejemplo@gmail.com" required />
+                <small *ngIf="form?.get('email')?.invalid && (form?.get('email')?.dirty || form?.get('email')?.touched)"
+                  class="text-danger">
+                  <ng-container *ngIf="form?.get('email')?.hasError('required')">El correo es requerido</ng-container>
+                </small>
+              </div>
+
+              <div class="form-content">
+                <label htmlFor="username">
+                  <i class="pi pi-lock"></i>Contraseña</label>
+                <input pInputText type="password" name="password" placeholder="**********" formControlName="pass" />
+                <small *ngIf="form?.get('pass')?.invalid && (form?.get('pass')?.dirty || form?.get('pass')?.touched)"
+                  class="text-danger">
+                  <ng-container *ngIf="form?.get('pass')?.hasError('required')">La contraseña es
+                    requerida</ng-container>
+                </small>
+              </div>
+              <p-button label="Ingresar" [loading]="loading" [disabled]="form.invalid" (click)="onSubmit()"
+                icon="pi pi-unlock" styleClass="w-10rem mx-auto" type="submit" rounded="true"
+                severity="success"></p-button>
+            </div>
+          </form>
+        </div>
+
+      </div>
+    </div>
+
+
+  </p-card>
+</div>

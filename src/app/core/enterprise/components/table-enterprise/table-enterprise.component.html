@@ -1,0 +1,164 @@
+<p-menubar>
+    <ng-template pTemplate="start">
+        <div class="filter-spacer">
+            <button pButton pRipple (click)="dialog()" type="button" icon="pi pi-plus"
+                class="p-button-success p-button-sm" tooltipPosition="top" pTooltip="{{help.c}}">
+            </button>
+
+            <button pButton pRipple (click)="sendtoReview()" [disabled]="!showAprobe()" type="button" icon="pi pi-check-circle"
+                class="p-button-help p-button-sm" tooltipPosition="top" pTooltip="{{help.ev}}">
+            </button>
+        
+        </div>
+
+    </ng-template>
+    <ng-template let-item pTemplate="end">
+        <button nbButton status="success">
+            {{ item.label }}
+        </button>
+    </ng-template>
+    <ng-template pTemplate="end">
+        <div class="filter-spacer">
+            <span>Fecha Inicial</span>
+            <input pInputText type="date" class="p-inputtext-sm" [(ngModel)]="startDate"
+                (change)="onStartDateChange()" />
+            <span>Fecha Final</span>
+            <input pInputText type="date" class="p-inputtext-sm" [(ngModel)]="endDate" (change)="onEndDateChange()" />
+            <span class="p-input-icon-left">
+                <i class="pi pi-search"></i>
+                <input pInputText type="text" [(ngModel)]="filterValue" (input)="onFilterInputChange($event)"
+                    placeholder="Buscar...." />
+            </span>
+
+        </div>
+
+    </ng-template>
+</p-menubar>
+<br>
+<p-table #dt [value]="filas" [totalRecords]="totalFilas" [rows]="10" [showCurrentPageReport]="true"
+    [rowsPerPageOptions]="[5, 10, 25, 50]" [loading]="loading" [lazy]="true" (onLazyLoad)="getData($event)"
+    [paginator]="true" responsiveLayout="stack" [breakpoint]="'960px'" styleClass="p-datatable-striped"
+    currentPageReportTemplate="Pagina {first} con {last} de {totalRecords} filas" [filterDelay]="0"
+    [globalFilterFields]="['nombre, nit']" [(selection)]="selectedItems">
+    <ng-template pTemplate="header">
+        <tr>
+            <th style="width: 4rem">
+                <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+            </th>
+            <th pSortableColumn="nombre" class="table-column">
+                <p-sortIcon field="nombre"></p-sortIcon>
+                Nombre
+            </th>
+            <th pSortableColumn="nit" class="table-column">
+                NIT
+            </th>
+            <th pSortableColumn="numero" class="table-column">
+                Numero
+            </th>
+            <th pSortableColumn="correo" class="table-column">
+                Correo
+            </th>
+            <th pSortableColumn="legal" class="table-column">
+                Representante Legal
+            </th>
+            <th class="action-column">
+                Logo
+            </th>
+            <th pSortableColumn="evaluado" class="table-column">
+                Evaluado
+            </th>
+            <th pSortableColumn="id_dep" class="table-column">
+                Departamento
+            </th>
+            <th pSortableColumn="direccion" class="table-column">
+                Direccion
+            </th>
+            <th pSortableColumn="fec_c" class="table-column">
+                Registrado
+            </th>
+            <th class="action-column"> Acciones </th>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-item>
+        <tr>
+            <td>
+                <p-tableCheckbox [value]="item" (onChange)="onRowSelect($event)"></p-tableCheckbox>
+            </td>
+            <td>
+                <span class="p-column-title" style="font-weight: bold;">Nombre</span>
+                <span class="text-ellipsis" [autoHide]="false" tooltipPosition="bottom" pTooltip="{{ item.nombre }}">
+                    {{ item.nombre }}</span>
+            </td>
+            <td>
+                <span class="p-column-title">NIT</span>
+                <div class="text-ellipsis">
+                    {{ item.nit }}</div>
+            </td>
+            <td>
+                <span class="p-column-title">Numero</span>{{ item.numero }}
+            </td>
+            <td>
+                <span class="p-column-title">Correo</span>{{ item.correo }}
+            </td>
+            <td>
+                <span class="p-column-title">Representante</span>
+                <span [autoHide]="false" tooltipPosition="bottom" pTooltip="{{ item.legal }}" class="text-ellipsis">{{ item.legal }}</span>
+            </td>
+            <td style="display:flex; justify-content: center;">
+                <span class="p-column-title">Logo</span>
+                <ng-container *ngIf="item.logo">
+                    <img [src]="item.logo" alt="Logo" style="max-height: 30px;">
+                </ng-container>
+                <ng-container *ngIf="!item.logo">
+                    Sin Logo
+                </ng-container>
+            </td>
+            <td>
+                <span class="p-column-title">Evaluado</span>
+                <ng-container *ngIf="item.evaluado !== '0'; else notEv">
+                    <span class="aprobe">SI</span>
+                </ng-container>
+                <ng-template #notEv>
+                    <span class="denied">NO</span>
+                </ng-template>
+            </td>
+            <td>
+                <span class="p-column-title">Departamento</span>{{ item.departamento }}
+            </td>
+            <td>
+                <span class="p-column-title">Direccion</span>
+                <span [autoHide]="false" tooltipPosition="bottom" pTooltip="{{ item.direccion }}" class="text-ellipsis">{{ item.direccion }}</span>
+            </td>
+            <td>
+                <span class="p-column-title">Registrado</span>{{ item.fec_c | date : "dd/MM/yy"}}
+            </td>
+            <td>
+                <div class="btn-spacer">
+                    <button pButton pRipple (click)="dialog(item.id)" type="button" icon="pi pi-pencil"
+                        class="p-button-warning p-button-sm" tooltipPosition="top" pTooltip="{{help.e}}"></button>
+                    <button pButton pRipple (click)="dialogDelete(item.id)" type="button" icon="pi pi-trash"
+                        class="p-button-danger p-button-sm" tooltipPosition="top" pTooltip="{{help.d}}"></button>
+                </div>
+            </td>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="paginatorleft">
+        <p-button type="button" icon="pi pi-replay" (click)="refreshTable()" styleClass="p-button-text"></p-button>
+    </ng-template>
+    <ng-template pTemplate="emptymessage">
+        <tr>
+            <td colspan="13">Tabla Vacia.</td>
+        </tr>
+    </ng-template>
+</p-table>
+<p-sidebar [(visible)]="display" position="left" [baseZIndex]="10000" styleClass="p-sidebar-md">
+      <ng-template pTemplate="header">
+        <div class="btn-spacer">
+            <i class='{{icon}} logo-title'></i>
+            <span class="form-title">
+                {{title}}
+            </span>
+        </div>
+    </ng-template>
+    <app-create-edit-enterprise></app-create-edit-enterprise>
+</p-sidebar>

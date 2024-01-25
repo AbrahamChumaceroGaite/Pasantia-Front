@@ -1,0 +1,22 @@
+<div class="layout-topbar">
+    <a class="layout-topbar-logo">
+        <img src='assets/images/ucb_blanco.png' alt="logo">
+        <button #menubutton class="p-link layout-menu-button layout-topbar-button"
+            (click)="layoutService.onMenuToggle()">
+            <i class="pi pi-bars"></i>
+        </button>
+    </a>
+
+    <button #topbarmenubutton class="p-link layout-topbar-menu-button layout-topbar-button"
+        (click)="layoutService.showProfileSidebar()">
+        <i class="pi pi-ellipsis-v"></i>
+    </button>
+<!-- 
+    <div #topbarmenu class="layout-topbar-menu"
+        [ngClass]="{'layout-topbar-menu-mobile-active': layoutService.state.profileSidebarVisible}">
+        <span> {{AuthService.getUserName()}}</span>
+        <button class="p-link layout-topbar-button" (click)="AuthService.logout()">
+            <i class="pi pi-sign-out"></i>
+        </button>
+    </div> -->
+</div>

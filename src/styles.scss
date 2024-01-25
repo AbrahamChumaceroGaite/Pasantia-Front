@@ -1,0 +1,17 @@
+@use "./assets/boxicons/css/boxicons.min.css";
+
+@import "primeng/resources/themes/bootstrap4-dark-blue/theme.css";
+/* @import "primeng/resources/themes/lara-dark-teal/theme.css"; */
+/* @import "primeng/resources/themes/lara-light-teal/theme.css"; */
+/*  @import "primeng/resources/themes/md-dark-indigo/theme.css";  */
+@import "primeng/resources/primeng.css";
+@import "primeicons/primeicons.css";
+$gutter: 1rem; //for primeflex grid system
+@import "assets/layout/styles/layout/layout.scss";
+@import "assets/layout/styles/layout/responsive.scss";
+@import "assets/layout/styles/layout/menu.scss";
+@import "assets/layout/styles/layout/content.scss";
+
+@import "./app/styles/login.scss";
+@import "./app/styles/layout.scss";
+@import "./app/styles/form.scss";

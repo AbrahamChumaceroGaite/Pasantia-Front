@@ -1,0 +1,231 @@
+<br>
+<form [formGroup]="form">
+
+    <div class="form-columns">
+
+        <div class="columns">
+            <div class="form-content">
+                <label><i class="pi pi-building"></i>Nombre</label>
+                <input pInputText type="text" class="p-inputtext-sm" [class.ng-invalid]="isInvalid('nombre')"
+                    [class.ng-dirty]="form.get('nombre')?.dirty" formControlName="nombre" />
+                <small
+                    *ngIf="form?.get('nombre')?.invalid && (form?.get('nombre')?.dirty || form?.get('nombre')?.touched)"
+                    class="text-danger">
+                    <ng-container *ngIf="form?.get('nombre')?.hasError('required')">El Nombre es
+                        requerido</ng-container>
+                </small>
+            </div>
+
+            <div class="form-content">
+                <label>
+                    <i class='bx bxs-business'></i>Razón Social</label>
+                <input pInputText type="text" class="p-inputtext-sm" formControlName="razon" />
+                <small *ngIf="form?.get('razon')?.invalid && (form?.get('razon')?.dirty || form?.get('razon')?.touched)"
+                    class="text-danger">
+                    <ng-container *ngIf="form?.get('razon')?.hasError('required')">La Razón Social es requerida</ng-container>
+                </small>
+            </div>
+
+            <div class="form-content">
+                <label>
+                    <i class='bx bx-at'></i>Correo</label>
+                <input pInputText type="email" class="p-inputtext-sm" [class.ng-invalid]="isInvalid('correo')"
+                    [class.ng-dirty]="form.get('correo')?.dirty" formControlName="correo">
+                <small
+                    *ngIf="form?.get('correo')?.invalid && (form?.get('desc')?.dirty || form?.get('correo')?.touched)"
+                    class="text-danger">
+                    <ng-container *ngIf="form?.get('correo')?.hasError('required')">El Correo es
+                        requerido</ng-container>
+                </small>
+            </div>
+        
+
+            <div class="form-content">
+                <label>
+                    <i class='bx bxs-city'></i>Departamento</label>
+                <p-dropdown [options]="dept" [(ngModel)]="selectedDept" optionLabel="nombre" [filter]="true"
+                    filterBy="nombre" [showClear]="true" placeholder="Seleccionar Departamento"
+                    [class.ng-invalid]="isInvalid('id_dep')" [class.ng-dirty]="form.get('id_dep')?.dirty"
+                    formControlName="id_dep">
+                    <ng-template let-selectedDept pTemplate="item">
+                        <div>{{selectedDept.nombre}}</div>
+                    </ng-template>
+                </p-dropdown>
+                <small
+                    *ngIf="form?.get('id_dep')?.invalid && (form?.get('id_dep')?.dirty || form?.get('id_dep')?.touched)"
+                    class="text-danger">
+                    <ng-container *ngIf="form?.get('id_dep')?.hasError('required')">El Departamento es
+                        requerido</ng-container>
+                </small>
+            </div>
+
+            <div class="form-content">
+                <label>
+                    <i class='bx bxs-business'></i>Matricula de Comercio</label>
+                <input pInputText type="text" class="p-inputtext-sm" formControlName="matricula" />
+                <small *ngIf="form?.get('matricula')?.invalid && (form?.get('matricula')?.dirty || form?.get('matricula')?.touched)"
+                    class="text-danger">
+                    <ng-container *ngIf="form?.get('matricula')?.hasError('required')">La Matricula de Comercio es requerida</ng-container>
+                </small>
+            </div>           
+
+        </div>
+
+        <div class="columns">
+
+            <div class="form-content">
+                <label>
+                    <i class="pi pi-id-card"></i>NIT</label>
+                <input pInputText type="number" class="p-inputtext-sm" formControlName="nit" />
+                <small *ngIf="form?.get('nit')?.invalid && (form?.get('nit')?.dirty || form?.get('nit')?.touched)"
+                    class="text-danger">
+                    <ng-container *ngIf="form?.get('nit')?.hasError('required')">El NIT es requerido</ng-container>
+                </small>
+            </div>
+
+            <div class="form-content">
+                <label>
+                    <i class="pi pi-phone"></i>Telefono</label>
+                <input pInputText type="number" class="p-inputtext-sm" formControlName="numero" />
+                <small
+                    *ngIf="form?.get('numero')?.invalid && (form?.get('numero')?.dirty || form?.get('numero')?.touched)"
+                    class="text-danger">
+                    <ng-container *ngIf="form?.get('numero')?.hasError('required')">El Número es
+                        requerido</ng-container>
+                </small>
+            </div>
+
+            <div class="form-content">
+                <label>
+                    <i class='bx bx-hard-hat'></i>Rubro</label>
+                <p-dropdown [options]="rubr" [(ngModel)]="selectedRubr" optionLabel="nombre" [filter]="true"
+                    filterBy="nombre" [showClear]="true" placeholder="Seleccionar Rubro"
+                    [class.ng-invalid]="isInvalid('id_rubro')" [class.ng-dirty]="form.get('id_rubro')?.dirty"
+                    formControlName="id_rubro">
+                    <ng-template let-selectedRubr pTemplate="item">
+                        <div>{{selectedRubr.nombre}}</div>
+                    </ng-template>
+                </p-dropdown>
+                <small
+                    *ngIf="form?.get('id_rubro')?.invalid && (form?.get('id_rubro')?.dirty || form?.get('id_rubro')?.touched)"
+                    class="text-danger">
+                    <ng-container *ngIf="form?.get('id_rubro')?.hasError('required')">El Rubro es
+                        requerido</ng-container>
+                </small>
+            </div>
+
+            <div class="form-content">
+                <label>
+                    <i class='bx bx-hard-hat'></i>Tipo de Negocio</label>
+                <p-dropdown [options]="type" [(ngModel)]="selectedType" optionLabel="nombre" [filter]="true"
+                    filterBy="nombre" [showClear]="true" placeholder="Seleccionar Negocio"
+                    [class.ng-invalid]="isInvalid('id_tipo')" [class.ng-dirty]="form.get('id_tipo')?.dirty"
+                    formControlName="id_tipo">
+                    <ng-template let-selectedType pTemplate="item">
+                        <div>{{selectedType.nombre}}</div>
+                    </ng-template>
+                </p-dropdown>
+                <small
+                    *ngIf="form?.get('id_tipo')?.invalid && (form?.get('id_tipo')?.dirty || form?.get('id_tipo')?.touched)"
+                    class="text-danger">
+                    <ng-container *ngIf="form?.get('id_tipo')?.hasError('required')">El Tipo de Negocio es
+                        requerido</ng-container>
+                </small>
+            </div>
+
+            <div class="form-content">
+                <label>
+                    <i class='bx bxs-notepad'></i>Dirección de Oficinas</label>
+                <input pInputText type="text" class="p-inputtext-sm" [class.ng-invalid]="isInvalid('direccion')"
+                    [class.ng-dirty]="form.get('direccion')?.dirty" formControlName="direccion"/> 
+                <small
+                    *ngIf="form?.get('direccion')?.invalid && (form?.get('direccion')?.dirty || form?.get('direccion')?.touched)"
+                    class="text-danger">
+                    <ng-container *ngIf="form?.get('direccion')?.hasError('required')">La Dirección es
+                        requerida</ng-container>
+                </small>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="form-columns">
+
+        <div class="columns">
+            <div class="form-content">
+                <label>
+                    <i class='bx bxs-image-alt' style="margin-bottom:20px"></i>Cargar Logo</label>
+                <input type="file" accept="image/*" (change)="onFileSelected($event)" formControlName="logo64">
+            </div>
+        </div>
+
+    </div>
+
+    <div class="form-columns">
+
+        <div class="columns">
+
+            <div class="form-content">
+                <label><i class="pi pi-user"></i>Representante Legal</label>
+                <input pInputText type="text" class="p-inputtext-sm" [class.ng-invalid]="isInvalid('legal')"
+                    [class.ng-dirty]="form.get('legal')?.dirty" formControlName="legal" />
+                <small *ngIf="form?.get('legal')?.invalid && (form?.get('legal')?.dirty || form?.get('legal')?.touched)"
+                    class="text-danger">
+                    <ng-container *ngIf="form?.get('legal')?.hasError('required')">El Representante legal es
+                        requerido</ng-container>
+                </small>
+            </div>
+
+            <div class="form-content">
+                <label>
+                    <i class='bx bxs-notepad'></i>Actividad Declarada</label>
+                <textarea pInputTextarea type="text" class="p-inputtext-sm" [class.ng-invalid]="isInvalid('desc')"
+                    [class.ng-dirty]="form.get('desc')?.dirty" formControlName="desc"> </textarea>
+                <small *ngIf="form?.get('desc')?.invalid && (form?.get('desc')?.dirty || form?.get('desc')?.touched)"
+                    class="text-danger">
+                    <ng-container *ngIf="form?.get('desc')?.hasError('required')">La Actividad Declarada es
+                        requerida</ng-container>
+                </small>
+            </div>
+
+            
+            <button pButton pRipple type="submit" label="{{buttonText}}" (click)="submitForm()" [loading]="loading"
+            [disabled]="!form.valid" class="p-button-rounded p-button-success"></button>
+
+        </div>
+
+        <div class="columns">
+
+            <div class="form-content">
+                <label>
+                    <i class="bx bxs-id-card"></i>C.I Representante Legal</label>
+                <input pInputText type="text" class="p-inputtext-sm" formControlName="legal_ci" />
+                <small
+                    *ngIf="form?.get('legal_ci')?.invalid && (form?.get('legal_ci')?.dirty || form?.get('legal_ci')?.touched)"
+                    class="text-danger">
+                    <ng-container *ngIf="form?.get('legal_ci')?.hasError('required')">El C.I del representante legal es
+                        requerido</ng-container>
+                </small>
+            </div>
+
+            <div class="form-content" formArrayName="links">
+                <label>
+                    <i class="pi pi-plus" (click)="addLink()" tooltipPosition="bottom" pTooltip="Agregar enlace"></i>
+                    Enlaces (Pag. Web, WhatsApp, Facebook, etc)
+                </label>
+                <ng-container *ngFor="let link of links.controls; let i = index">
+                    <ng-container [formGroupName]="i">
+                        <div class="btn-spacer" >
+                            <input pInputText type="text" style="width: 100%;" formControlName="url" class="p-inputtext-sm" />
+                            <button pButton pRipple type="button" (click)="removeLink(i)"
+                                class="p-button-outlined p-button-danger p-button-sm" icon="pi pi-trash">
+                            </button>
+                        </div>
+                    </ng-container>
+                </ng-container>
+            </div>
+        </div>
+    </div>
+
+  
+</form>

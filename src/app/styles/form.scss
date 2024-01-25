@@ -1,0 +1,131 @@
+.login-title {
+    display: flex;
+    justify-content: center;
+    font-weight: bold;
+    color: rgb(103, 175, 56);
+    font-size: 20px;
+}
+
+
+
+#loginform {
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+
+    .form-column {
+        display: flex;
+        width: 100%;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 20px;
+
+        .form-content {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+
+
+            .text-danger {
+                color: red;
+                font-weight: bold;
+            }
+
+
+           
+        }
+    }
+
+    .p-button {
+        width: 10rem;
+        margin: 0 auto;
+    }
+}
+
+.form-columns-side {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    .columns {
+        display: flex;
+        flex-direction: column;
+        vertical-align: middle;
+        align-content: center;
+        gap: 20px;
+
+        .form-content {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            
+
+            i {
+                margin-right: 10px;
+            }
+
+
+
+            .text-danger {
+                color: red;
+                font-weight: bold;
+            }
+        }
+    }
+
+}
+
+.form-columns {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 30px;
+
+    .columns {
+        display: flex;
+        flex-direction: column;
+        vertical-align: middle;
+        align-content: center;
+        gap: 20px;
+
+        .form-content {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            margin: 10px;
+
+            i {
+                margin-right: 10px;
+
+                &:hover{
+                    color: green;
+                    font-weight: bold;
+                }
+            }         
+
+            .text-danger {
+                color: red;
+                font-weight: bold;
+            }
+        }
+    }
+
+}
+
+.form-group {
+    margin-bottom: 1rem;
+
+    .error-message {
+        color: red;
+        font-size: 0.75rem;
+        margin-top: 0.25rem;
+    }
+
+    .input-error {
+        border: 1px solid red;
+    }
+}
+
+button {
+    margin-top: 1rem;
+}
