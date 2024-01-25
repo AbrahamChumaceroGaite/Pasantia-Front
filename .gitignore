@@ -40,6 +40,7 @@ build/Release
 
 # Dependency directories
 node_modules/
+angular/
 jspm_packages/
 
 # Snowpack dependency directory (https://snowpack.dev/)
@@ -115,6 +116,8 @@ dist
 
 # Stores VSCode versions used for testing VSCode extensions
 .vscode-test
+.vscode/*
+.angular/*
 
 # yarn v2
 .yarn/cache

@@ -5,7 +5,7 @@
 export const environment = {
   production: false,
    /*  appUrl: 'http://localhost:80/', */
-  appUrl: 'https://api.ucb.pasantias.dev.404.codes'
+  appUrl: 'https://api.ucb.pasantias.dev.404.codes/'
 };
 
 /*

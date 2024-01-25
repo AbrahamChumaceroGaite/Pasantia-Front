@@ -14,6 +14,7 @@ import { tooltips } from '../../utils/tooltips';
   templateUrl: './table-enterprise.component.html',
   styleUrls: ['./table-enterprise.component.scss']
 })
+
 export class TableEnterpriseComponent {
   @ViewChild('dt') dt!: Table;
   filas: Enterprise[] = [];

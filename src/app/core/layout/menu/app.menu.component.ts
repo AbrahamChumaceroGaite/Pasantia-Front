@@ -15,12 +15,13 @@ export class AppMenuComponent implements OnInit {
     constructor(public layoutService: LayoutService, private authService: AuthService) { }
 
     ngOnInit() {
-        const userRole = this.authService.getRole();
-
-        // Filtrar el menú según el rol del usuario
-       /* 
-        */
-        this.model = MENU_SIDE
+   
+        this.model = [
+            {
+                label: 'MENU',
+                items: MENU_SIDE
+            },
+        ];
     }
 
     // Función para verificar si el usuario tiene permisos para ver el ítem del menú
